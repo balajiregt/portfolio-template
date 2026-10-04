@@ -1,0 +1,21 @@
+{
+  "name": "engineering-portfolio-template",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/generate.mjs --check",
+    "predev": "node scripts/generate.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "prebuild": "node scripts/generate.mjs",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/model.test.mjs",
+    "test:e2e": "playwright test",
+    "test:customization": "node scripts/prove-customization.mjs",
+    "notices": "node scripts/notices.mjs"
+  },
+  "dependencies": {"@xyflow/react":"^12.8.0","lucide-react":"^0.525.0","react":"^19.1.0","react-dom":"^19.1.0","zod":"^3.25.0"},
+  "devDependencies": {"@playwright/test":"^1.56.0","@types/node":"^22.0.0","@types/react":"^19.1.0","@types/react-dom":"^19.1.0","@vitejs/plugin-react":"^5.0.0","elkjs":"^0.12.0","mermaid":"^12.1.0","typescript":"^5.9.0","vite":"^7.1.0"}
+}

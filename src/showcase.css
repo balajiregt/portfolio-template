@@ -1,0 +1,110 @@
+.case-mode > .page-width { max-width: 1440px; }
+.case-mode .section-head { align-items: center; margin-bottom: 20px; }
+.case-mode .section-head .eyebrow { margin: 0; }
+.case-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 38px; padding-top: 18px; }
+.case-index { min-width: 0; border-right: 1px solid var(--border); padding-right: 26px; }
+.case-index h2 { font-size: 34px; margin-bottom: 17px; }
+.case-intro { font-size: 16px; line-height: 1.7; margin-bottom: 26px; }
+.case-projects { display: flex; flex-direction: column; gap: 0; max-height: 420px; overflow-y: auto; overscroll-behavior: contain; padding: 5px; margin-left: -5px; scrollbar-width: thin; }
+.case-projects button { display: grid; grid-template-columns: 23px minmax(0, 1fr) 17px; gap: 12px; width: 100%; border: 0; border-bottom: 1px solid var(--border); border-left: 3px solid transparent; background: transparent; text-align: left; padding: 19px 10px; min-height: 84px; border-radius: 3px; }
+.case-projects button[aria-current=true] { background: #e8f0ec; border-left-color: var(--green); }
+.case-projects button:hover { background: #eaf1ee; }
+.case-index-number { color: #728078; font-size: 12px; padding-top: 2px; }
+.case-projects strong { display: block; font-size: 14px; font-weight: 600; line-height: 1.5; }
+.case-projects small { display: block; color: var(--muted); font-size: 12px; margin-top: 5px; }
+.case-projects svg { align-self: center; }
+.case-study { min-width: 0; }
+.case-topline { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 40px; }
+.case-controls { display: flex; gap: 8px; }
+.case-controls button { display: grid; place-items: center; height: 38px; width: 38px; border: 1px solid #cfddd5; border-radius: 4px; background: transparent; }
+.case-controls button:hover:not(:disabled) { background: #e6eee9; }
+.case-controls button:disabled { opacity: .35; cursor: default; }
+.case-study > h3 { font-size: 36px; line-height: 1.2; margin: 12px 0 16px; overflow-wrap: anywhere; }
+.case-summary { font-size: 17px; line-height: 1.65; max-width: 70ch; margin-bottom: 17px; }
+.case-status { display: flex; align-items: center; gap: 9px; font-size: 13px; margin-bottom: 25px; }
+.case-status > span { width: 8px; height: 8px; border-radius: 50%; background: #198068; flex-shrink: 0; }
+.case-status[data-experimental=true] > span { background: #a9740b; }
+.case-architecture { margin: 0 0 25px; background: white; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.case-architecture img { display: block; width: 100%; height: auto; aspect-ratio: 2; object-fit: contain; }
+.case-architecture figcaption { font-size: 11px; color: var(--muted); padding: 0 18px 12px; }
+.case-product-image { width: 100%; height: auto; margin: 25px 0; }
+.case-notes { display: grid; grid-template-columns: .85fr 1.15fr; gap: 30px; border-top: 1px solid var(--border); padding-top: 24px; }
+.case-notes section + section { padding-left: 28px; border-left: 1px solid var(--border); }
+.case-notes h4 { font-size: 16px; font-weight: 600; margin: 0 0 10px; }
+.case-notes p { font-size: 14px; line-height: 1.8; margin-bottom: 14px; }
+.case-skills { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; margin: 12px 0 22px; padding: 0; font-size: 12px; color: #35755f; }
+.case-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding-bottom: 28px; }
+.case-actions button { border: 0; }
+.case-actions a { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--green); min-height: 40px; }
+.case-next, .case-related { border: 0; border-top: 1px solid var(--border); background: transparent; display: flex; align-items: center; gap: 15px; padding: 22px 0; width: 100%; text-align: left; }
+.case-next > svg, .case-related > svg:last-child { margin-left: auto; flex-shrink: 0; }
+.case-next small, .case-related small { display: block; font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+.case-next strong, .case-related strong { font-size: 17px; font-weight: 550; }
+.case-next:hover strong, .case-related:hover strong { color: var(--green); }
+.mobile-project-select { display: none; }
+.mobile-architecture { display: none; }
+/* Keep the skip link off-canvas even when its text wraps on narrow screens. */
+.skip { top: 10px; transform: translateY(calc(-100% - 20px)); }
+.skip:focus-visible { transform: translateY(0); }
+.case-diagram { border-top: 1px solid var(--border); margin-bottom: 16px; }
+.case-diagram > summary, .experience-highlights summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; cursor: pointer; min-height: 48px; font-size: 13px; color: var(--green); }
+.case-diagram > summary::-webkit-details-marker, .experience-highlights summary::-webkit-details-marker { display: none; }
+.case-diagram > summary svg, .experience-highlights summary svg { flex-shrink: 0; transition: transform .15s; }
+.case-diagram[open] > summary svg, .experience-highlights details[open] > summary svg { transform: rotate(180deg); }
+.case-diagram .case-architecture { margin: 4px 0 16px; }
+.experience-highlights { margin: 16px 0; }
+.experience-highlights li { padding: 0; }
+.experience-highlights summary h4 { color: #263c32; line-height: 1.4; padding: 12px 0; }
+.experience-highlights details p { margin: 0; padding: 0 24px 16px 0; }
+.intro { padding-top: 36px; }
+.focus-strip { margin-top: 30px; padding: 18px 0; }
+.work-band { padding-top: 30px; }
+.integrations { padding-top: 32px; padding-bottom: 20px; }
+.writing { padding-top: 32px; padding-bottom: 32px; }
+.experience-band { padding-top: 32px; padding-bottom: 32px; }
+.case-status { margin-bottom: 16px; }
+.case-notes { padding-top: 16px; gap: 20px; }
+.case-actions { padding-bottom: 16px; gap: 16px; }
+.case-next, .case-related { padding: 14px 0; }
+.footer-line { margin-bottom: 26px; }
+@media (min-width: 901px) {
+  .integration-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .integration-item { grid-template-columns: 26px minmax(0, 1fr); gap: 14px; padding: 16px 0; }
+  .integration-item > .text-action { grid-column: 2; justify-self: start; }
+  .integration-item h3 { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-diagram > summary svg, .experience-highlights summary svg { transition: none; }
+}
+@media (max-width: 1000px) {
+  .case-layout { grid-template-columns: 225px minmax(0, 1fr); gap: 24px; }
+  .case-index { padding-right: 18px; }
+  .case-index h2 { font-size: 28px; }
+  .case-study > h3 { font-size: 30px; }
+  .case-projects button { gap: 8px; padding-left: 6px; }
+  .case-notes { grid-template-columns: 1fr; gap: 12px; }
+  .case-notes section + section { padding-left: 0; border: 0; }
+}
+@media (max-width: 700px) {
+  .case-architecture img { display: none; }
+  .mobile-architecture { display: block; padding: 8px 20px; margin: 0; }
+  .mobile-architecture div { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .mobile-architecture div:last-child { border: 0; }
+  .mobile-architecture dt { color: var(--green); font-size: 12px; font-weight: 600; }
+  .mobile-architecture dd { margin: 5px 0 0; font-size: 15px; }
+  .case-layout { grid-template-columns: 1fr; gap: 28px; padding-top: 4px; }
+  .case-index { padding: 0; border: 0; }
+  .case-index h2 { font-size: 30px; }
+  .case-intro { font-size: 14px; margin-bottom: 18px; }
+  .case-projects { display: none; }
+  .mobile-project-select { display: block; font-size: 12px; color: var(--muted); }
+  .mobile-project-select select { display: block; width: 100%; min-height: 46px; margin-top: 6px; padding: 10px 12px; border: 1px solid #bdcfc4; border-radius: 4px; background: white; color: #203c30; font: inherit; font-size: 14px; }
+  .case-study > h3 { font-size: 28px; }
+  .case-summary { font-size: 15px; }
+  .case-status { font-size: 12px; }
+  .case-notes { grid-template-columns: 1fr; gap: 15px; }
+  .case-actions { gap: 18px; }
+  .case-actions .primary-link { width: 100%; justify-content: center; }
+  .case-mode .section-head { gap: 10px; }
+  .case-mode .segmented button { padding: 7px 6px; }
+}

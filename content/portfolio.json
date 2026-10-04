@@ -1,0 +1,35 @@
+{
+  "profile": {
+    "name": "Alex Morgan",
+    "initials": "am",
+    "title": "Software Engineer",
+    "location": "Remote",
+    "tagline": "Reliable software. Clear decisions.",
+    "summary": "A fictional engineering profile demonstrating how project stories, architecture and evidence can fit together. Replace these examples with your own work.",
+    "brandCaption": "ENGINEERING & MAKING",
+    "portrait": "/assets/sample-workbench.png",
+    "portraitAlt": "Illustrated software component workbench",
+    "portraitCaption": "Fictional example portfolio",
+    "contactUrl": "mailto:alex@example.com",
+    "links": [{"label":"GitHub","url":"https://github.com/"}],
+    "focus": ["Web applications", "Automation", "Technical architecture"],
+    "metaTitle": "Alex Morgan | Engineering Portfolio",
+    "metaDescription": "Fictional sample portfolio with project stories and interactive technical architectures."
+  },
+  "settings": {"defaultProjectId":"sample-web","defaultArchitectureId":"sample-web","defaultView":"stories"},
+  "copy": {
+    "allWorkTitle":"All work","repositoriesTitle":"Repositories",
+    "workTitle":"Inside the build.","workIntro":"Fictional projects illustrating the template.",
+    "integrationsTitle":"Connected systems.","writingTitle":"Notes from building.",
+    "recognitionTitle":"Writing elsewhere","experienceTitle":"Engineering in practice.",
+    "experienceIntro":"Replace this sample with your own responsibilities and dates.",
+    "experienceNote":"Sample data is fictional. Independent work should be distinguished from employment.",
+    "contactTitle":"Let's compare notes.","architectureTitle":"Architecture explorer."
+  },
+  "projects": [
+    {"id":"sample-web","title":"Field Notes","category":"Product","summary":"A fictional web application for organising observations.","problem":"A sample team needs shared, searchable notes.","contribution":"Example design: a browser client, authenticated API and relational data store.","status":"Fictional example / conceptual","skills":["React","APIs","Data modelling"],"links":[],"articleIds":[]},
+    {"id":"sample-tests","title":"Release Checks","category":"Framework","summary":"A fictional automation system for repeatable release checks.","problem":"A sample delivery team needs consistent regression feedback.","contribution":"Example design: reusable test fixtures, a runner and reviewable execution evidence.","status":"Fictional example / conceptual","skills":["Playwright","API testing","CI/CD"],"links":[],"articleIds":[]},
+    {"id":"sample-workflow","title":"Research Digest","category":"Workflow","summary":"A fictional scheduled research and review workflow.","problem":"A sample team wants a curated digest without unchecked publication.","contribution":"Example design: bounded research, deterministic checks and a human approval step.","status":"Fictional example / proposed","skills":["Scheduling","AI evaluation","Human review"],"links":[],"articleIds":[]}
+  ],
+  "articles": [],"recognition": [],"repositories": [],"experience": []
+}

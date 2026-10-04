@@ -1,0 +1,15 @@
+{
+  "id":"sample-web","projectId":"sample-web","title":"Field Notes","category":"Product",
+  "evidence":"Fictional example; the boundaries describe responsibilities, not verified network isolation.",
+  "variants":[{
+    "id":"overview","title":"Web application","status":"conceptual","note":"Example only. No production deployment or security certification is implied.",
+    "groups":[{"id":"client","title":"User device","icon":"browser"},{"id":"backend","title":"Application services","icon":"cloud"}],
+    "nodes":[
+      {"id":"browser","title":"Web client","subtitle":"React application","detail":"Collects input and displays notes.","group":"client","icon":"browser"},
+      {"id":"api","title":"Notes API","subtitle":"Request handling","detail":"Validates requests and coordinates application operations.","group":"backend","icon":"server"},
+      {"id":"auth","title":"Identity service","subtitle":"Authentication","detail":"Represents authentication; specific controls need independent design and testing.","group":"backend","icon":"shield"},
+      {"id":"database","title":"Notes database","subtitle":"Persistent records","detail":"Stores sample note records.","group":"backend","icon":"database","kind":"storage"}
+    ],
+    "edges":[{"from":"browser","to":"api","label":"HTTPS requests","bidirectional":true},{"from":"api","to":"auth","label":"validate identity"},{"from":"api","to":"database","label":"read / write","bidirectional":true}]
+  }]
+}

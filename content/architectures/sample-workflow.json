@@ -1,0 +1,18 @@
+{
+  "id":"sample-workflow","projectId":"sample-workflow","title":"Research Digest","category":"Workflow",
+  "evidence":"Fictional proposed workflow with a human publication gate.",
+  "variants":[{
+    "id":"proposal","title":"Scheduled AI-assisted workflow","status":"proposed","note":"Not deployed. Availability controls are a display simulation only.",
+    "simulation":{"label":"Research worker available","componentIds":["research"]},
+    "groups":[{"id":"outside","title":"Public sources","icon":"globe"},{"id":"worker","title":"Worker environment","icon":"server"},{"id":"approval","title":"Human review","icon":"user"}],
+    "nodes":[
+      {"id":"sources","title":"Public sources","subtitle":"Evidence","detail":"Public reference pages provide source material.","group":"outside","icon":"globe"},
+      {"id":"timer","title":"Scheduler","subtitle":"Recurring trigger","detail":"Starts a bounded research task.","group":"worker","icon":"clock"},
+      {"id":"research","title":"Research agent","subtitle":"Bounded AI step","detail":"Drafts a source-linked summary. Model output can be incorrect.","group":"worker","icon":"bot","kind":"ai"},
+      {"id":"checks","title":"Validation","subtitle":"Deterministic checks","detail":"Checks structure and required evidence before review.","group":"worker","icon":"shield"},
+      {"id":"reviewer","title":"Reviewer","subtitle":"Approve or revise","detail":"Reviews the exact draft before publication.","group":"approval","icon":"user","kind":"human"},
+      {"id":"digest","title":"Approved digest","subtitle":"Publication","detail":"Only the reviewed output is published in this proposed design.","group":"approval","icon":"message"}
+    ],
+    "edges":[{"from":"timer","to":"research","label":"trigger"},{"from":"sources","to":"research","label":"source evidence"},{"from":"research","to":"checks","label":"draft"},{"from":"checks","to":"reviewer","label":"review packet"},{"from":"reviewer","to":"digest","label":"explicit approval"}]
+  }]
+}

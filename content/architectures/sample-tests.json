@@ -1,0 +1,17 @@
+{
+  "id":"sample-tests","projectId":"sample-tests","title":"Release Checks","category":"Framework",
+  "evidence":"Fictional automation architecture; no results or adoption claims.",
+  "variants":[{
+    "id":"overview","title":"Test automation platform","status":"conceptual","note":"Fixtures and services are illustrative. Evidence still needs engineering review.",
+    "groups":[{"id":"inputs","title":"Test inputs","icon":"folder"},{"id":"runtime","title":"Execution environment","icon":"server"},{"id":"review","title":"Evidence and review","icon":"user"}],
+    "nodes":[
+      {"id":"specs","title":"Test specifications","subtitle":"Expected behaviour","detail":"Define test intent and acceptance criteria.","group":"inputs","icon":"file"},
+      {"id":"fixtures","title":"Test fixtures","subtitle":"Controlled data","detail":"Provide repeatable inputs without production data.","group":"inputs","icon":"database","kind":"storage"},
+      {"id":"runner","title":"Playwright runner","subtitle":"UI and API checks","detail":"Executes test cases against the sample target.","group":"runtime","icon":"code"},
+      {"id":"target","title":"Test application","subtitle":"System under test","detail":"A non-production target application.","group":"runtime","icon":"browser"},
+      {"id":"results","title":"Execution evidence","subtitle":"Results and traces","detail":"Captures observable behaviour, including failures.","group":"review","icon":"storage","kind":"storage"},
+      {"id":"engineer","title":"Engineer review","subtitle":"Release decision","detail":"A human reviews evidence; passing tests are not a complete release guarantee.","group":"review","icon":"user","kind":"human"}
+    ],
+    "edges":[{"from":"specs","to":"runner","label":"test intent"},{"from":"fixtures","to":"runner","label":"controlled data"},{"from":"runner","to":"target","label":"exercise behaviour"},{"from":"runner","to":"results","label":"results and traces"},{"from":"results","to":"engineer","label":"review evidence"}]
+  }]
+}

@@ -1,0 +1,45 @@
+import {readFile,writeFile,mkdir,cp,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {createServer} from 'node:http';
+import {resolve,join,extname} from 'node:path';
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+const root=resolve('.customization-proof');
+await mkdir(root,{recursive:true});
+await cp('content',join(root,'content'),{recursive:true});
+const digest=async()=>{const paths=(await readdir('src')).filter(p=>p.endsWith('.tsx'));return createHash('sha256').update((await Promise.all(paths.map(p=>readFile(join('src',p))))).map(b=>b.toString()).join('')).digest('hex');};
+const before=await digest();
+const file=join(root,'content/portfolio.json'),config=JSON.parse(await readFile(file,'utf8'));
+Object.assign(config.profile,{name:'Jordan Lee',initials:'jl',title:'Platform Engineer',metaTitle:'Jordan Lee | Portfolio',contactUrl:'mailto:jordan@example.com'});
+config.projects.push({...config.projects[0],id:'signal-board',title:'Signal Board',summary:'Fictional configuration-only customisation proof.'});
+config.settings={defaultProjectId:'signal-board',defaultArchitectureId:'signal-board'};
+await writeFile(file,JSON.stringify(config,null,2));
+const model=JSON.parse(await readFile('content/architectures/sample-web.json','utf8'));
+Object.assign(model,{id:'signal-board',projectId:'signal-board',title:'Signal Board'});
+model.variants.push({...structuredClone(model.variants[0]),id:'future',title:'Alternative conceptual view',status:'proposed'});
+await writeFile(join(root,'content/architectures/signal-board.json'),JSON.stringify(model,null,2));
+const env={...process.env,PORTFOLIO_CONTENT_DIR:join(root,'content')};
+const build=()=>{execFileSync(process.execPath,['scripts/generate.mjs'],{env,stdio:'inherit'});execFileSync(process.execPath,['node_modules/vite/bin/vite.js','build','--outDir',join(root,'dist')],{env,stdio:'inherit'});};
+let browser;
+const server=createServer(async(req,res)=>{try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);const relative=pathname.startsWith('/assets/')?pathname.slice(1):'index.html';const path=resolve(root,'dist',relative);if(!path.startsWith(join(root,'dist')+'/')){res.writeHead(403).end();return;}res.setHeader('Content-Type',({'.js':'application/javascript','.css':'text/css','.png':'image/png','.html':'text/html'})[extname(path)]||'application/octet-stream');res.end(await readFile(path));}catch{res.writeHead(404).end();}});
+try{
+  build();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+  const url=`http://127.0.0.1:${server.address().port}`;
+  browser=await chromium.launch();const page=await browser.newPage();
+  await page.goto(url);assert.equal(await page.locator('h1').innerText(),'Jordan Lee');assert.equal(await page.locator('#case-title').innerText(),'Signal Board');
+  await page.goto(url+'/architecture');await page.locator('.architecture-node').first().waitFor();assert.equal(await page.locator('.architecture-project-title h2').innerText(),'Signal Board');
+  await page.locator('.architecture-toolbar select').selectOption('future');assert.equal((await page.locator('.architecture-status').innerText()).toLowerCase(),'proposed');
+  await page.screenshot({path:join(root,'customized-architecture.png'),fullPage:true});
+  // A separate build proves architecture, articles, recognition and experience are optional.
+  config.projects=[config.projects[3]];config.settings={};
+  await writeFile(file,JSON.stringify(config,null,2));
+  const empty=join(root,'minimal');await mkdir(empty,{recursive:true});await writeFile(join(empty,'portfolio.json'),JSON.stringify(config,null,2));await mkdir(join(empty,'architectures'),{recursive:true});
+  env.PORTFOLIO_CONTENT_DIR=empty;build();
+  await page.goto(url);assert.equal(await page.locator('a[href^="/architecture"]').count(),0);assert.equal(await page.locator('#writing,#experience,#recognition').count(),0);
+  await page.goto(url+'/architecture');assert.equal(await page.locator('.architecture-node').count(),0);
+  await page.screenshot({path:join(root,'minimal-architecture.png'),fullPage:true});
+  assert.equal(await digest(),before);
+  await writeFile(join(root,'result.json'),JSON.stringify({passed:true,reactSourceUnchanged:true,customProfile:'Jordan Lee',newProject:'signal-board',newArchitecture:true,variantSelection:true,optionalSectionsHidden:true},null,2));
+  console.log('Customization proven: profile, new project, architecture, variants, optional sections. No React edits.');
+}finally{await browser?.close();server.close();execFileSync(process.execPath,['scripts/generate.mjs'],{stdio:'inherit'});}

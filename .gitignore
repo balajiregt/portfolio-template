@@ -1,0 +1,8 @@
+node_modules/
+dist/
+src/generated/
+test-results/
+playwright-report/
+.customization-proof/
+.env*
+.DS_Store
