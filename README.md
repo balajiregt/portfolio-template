@@ -6,7 +6,7 @@ No account, database, paid AI, analytics, secrets or automatic project scanning.
 
 ## Start locally
 
-Use Node 22.12+ and npm.
+Use Node 22.13+ and npm (also required by the pinned deployment CLI).
 
 ```sh
 npm ci
@@ -39,7 +39,30 @@ Project links accept HTTPS and mailto without embedded credentials. Images must 
 
 ## Netlify
 
-After reviewing the sanitised repository, import it from GitHub in Netlify. The included `netlify.toml` uses `npm run build`, publish directory `dist`, and Node 22. No environment variables or paid add-ons are required. Review your account's actual free-tier limits before deployment; hosting is usage-limited. The included `_redirects` supports direct `/architecture/...` URLs. Test those URLs after deployment. Keep a previous successful deploy available for rollback.
+### Two-command preview
+
+After creating your own repository with **Use this template**, clone it, open a terminal in its folder, and customise/review your public content. Then run:
+
+```sh
+npm ci
+npm run deploy
+```
+
+The deployment command validates and builds the site, then downloads/runs pinned Netlify CLI 27.10.2 through npm. It stops if the build fails. Internet access and a Netlify account are required. On first use, follow the browser login and project setup prompts: choose **Create a new project/site** in your own team, not an unrelated existing portfolio. No shared token, global CLI installation or manual build/upload step is needed.
+
+Netlify prints a hosted preview URL. **A preview is publicly accessible too**: review all content before running the command. Check the site and a direct `/architecture/...` URL. When ready to publish to the linked site's main address:
+
+```sh
+npm run deploy:prod
+```
+
+This rebuilds and publishes the current local content, including uncommitted edits. Later updates use the same command; already-installed dependencies do not require another `npm ci` unless the lockfile changes. Both commands use the linked Netlify project on subsequent runs. To change that target, run `npx netlify-cli@27.10.2 unlink` before deploying again. Clear any inherited `NETLIFY_SITE_ID` environment variable so it cannot override your selected site. Local `.netlify/` state is ignored by Git and must not be shared. Never commit login tokens.
+
+### Automatic GitHub deployments (optional)
+
+For deployment on every push, connect your own GitHub repository through Netlify's import flow. The CLI commands above do not set up continuous deployment. The included `netlify.toml` uses `npm run build`, publish directory `dist`, and Node 22. No environment variables or paid add-ons are required. Review your account's actual free-tier limits before deployment; hosting is usage-limited. The included `_redirects` supports direct `/architecture/...` URLs. Keep a previous successful deploy available for rollback.
+
+See the [official Netlify deploy command reference](https://cli.netlify.com/commands/deploy/) for login, linking and deployment options.
 
 Never upload `node_modules`, `.customization-proof`, test recordings or development output. Manual deploys should contain **only `dist`**. `dist` intentionally contains configured public content and third-party license notices.
 

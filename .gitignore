@@ -6,3 +6,4 @@ playwright-report/
 .customization-proof/
 .env*
 .DS_Store
+.netlify/
