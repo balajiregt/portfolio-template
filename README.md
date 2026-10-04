@@ -24,6 +24,8 @@ npm run preview
 
 ## Make it yours
 
+Prefer using your own AI assistant? Follow [Create your portfolio with AI](docs/AI-ONBOARDING.md). It includes copy-ready [portfolio](docs/prompts/CREATE-PORTFOLIO.md) and [architecture](docs/prompts/CREATE-ARCHITECTURE.md) prompts for coding agents and regular chats. There is no built-in AI service or automatic resume upload.
+
 1. Replace `profile`, including metadata, contact links, optional image and alternative text.
 2. Replace `projects`. Set `settings.defaultProjectId`, or omit it to use the first project.
 3. Edit section headings in `copy`. Leave unused `articles`, `experience`, `recognition` and `repositories` as empty arrays. They are hidden automatically.
