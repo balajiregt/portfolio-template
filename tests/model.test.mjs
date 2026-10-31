@@ -14,7 +14,7 @@ for(const [name,mutate,pattern] of [
  ['unsafe URL',c=>c.content.profile.links[0].url='javascript:alert(1)',/public HTTPS/],
  ['private URL',c=>c.content.profile.links[0].url='https://127.0.0.1/private',/public HTTPS/],
  ['credential URL',c=>c.content.profile.links[0].url='https://user:pass@example.com',/public HTTPS/],
- ['unsupported icon',c=>c.architectures[0].variants[0].nodes[0].icon='unknown',/Invalid enum/],
+ ['unsupported icon',c=>c.architectures[0].variants[0].nodes[0].icon='unknown',/Invalid option/],
  ['missing boundary',c=>c.architectures[0].variants[0].nodes[0].group='unknown',/missing boundary/],
  ['reserved IDs',c=>c.architectures[0].variants[0].nodes[0].id='root',/Reserved internal/],
  ['undated implementation',c=>c.architectures[0].variants[0].status='implemented-snapshot',/require asOf/],
